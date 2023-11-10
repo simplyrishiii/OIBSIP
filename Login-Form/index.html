@@ -37,9 +37,9 @@
           <i class="bx bx-menu" onclick="myMenuFunction()"></i>
         </div>
       </nav>
-      <!----------------------------- Form box ----------------------------------->
+      <!-- Form box -->
       <div class="form-box">
-        <!------------------- login form -------------------------->
+        <!-- Login form -->
         <div class="login-container" id="login">
           <div class="top">
             <span
@@ -48,38 +48,40 @@
             >
             <header>Login</header>
           </div>
-          <div class="input-box">
-            <input
-              type="text"
-              name="username"  <!-- Add this line -->
-              class="input-field"
-              placeholder="Username or Email"
-            />
-            <i class="bx bx-user"></i>
-          </div>
-          <div class="input-box">
-            <input
-              type="password"
-              name="password"  <!-- Add this line -->
-              class="input-field"
-              placeholder="Password"
-            />
-            <i class="bx bx-lock-alt"></i>
-          </div>
-          <div class="input-box">
-            <input type="submit" class="submit" value="Login">
-          </div>
-          <div class="two-col">
-            <div class="one">
-              <input type="checkbox" id="login-check" />
-              <label for="login-check"> Remember Me</label>
+          <form id="loginForm" onsubmit="return validateLogin()">
+            <div class="input-box">
+              <input
+                type="text"
+                name="username"
+                class="input-field"
+                placeholder="Username or Email"
+              />
+              <i class="bx bx-user"></i>
             </div>
-            <div class="two">
-              <label><a href="#">Forgot password?</a></label>
+            <div class="input-box">
+              <input
+                type="password"
+                name="password"
+                class="input-field"
+                placeholder="Password"
+              />
+              <i class="bx bx-lock-alt"></i>
             </div>
-          </div>
+            <div class="input-box">
+              <input type="submit" class="submit" value="Login" />
+            </div>
+            <div class="two-col">
+              <div class="one">
+                <input type="checkbox" id="login-check" name="rememberMe" />
+                <label for="login-check"> Remember Me</label>
+              </div>
+              <div class="two">
+                <label><a href="#">Forgot password?</a></label>
+              </div>
+            </div>
+          </form>
         </div>
-        <!------------------- registration form -------------------------->
+        <!-- Registration form -->
         <div class="register-container" id="register">
           <div class="top">
             <span
@@ -87,40 +89,65 @@
             >
             <header>Sign Up</header>
           </div>
-          <div class="two-forms">
+          <form id="registerForm" onsubmit="return validateRegistration()">
+            <div class="two-forms">
+              <div class="input-box">
+                <input
+                  type="text"
+                  name="firstname"
+                  class="input-field"
+                  placeholder="Firstname"
+                />
+                <i class="bx bx-user"></i>
+              </div>
+              <div class="input-box">
+                <input
+                  type="text"
+                  name="lastname"
+                  class="input-field"
+                  placeholder="Lastname"
+                />
+                <i class="bx bx-user"></i>
+              </div>
+            </div>
             <div class="input-box">
-              <input type="text" class="input-field" placeholder="Firstname" />
-              <i class="bx bx-user"></i>
+              <input
+                type="text"
+                name="email"
+                class="input-field"
+                placeholder="Email"
+              />
+              <i class="bx bx-envelope"></i>
             </div>
-            <div class "input-box">
-              <input type="text" class="input-field" placeholder="Lastname" />
-              <i class="bx bx-user"></i>
+            <div class="input-box">
+              <input
+                type="password"
+                name="registerPassword"
+                class="input-field"
+                placeholder="Password"
+              />
+              <i class="bx bx-lock-alt"></i>
             </div>
-          </div>
-          <div class="input-box">
-            <input type="text" class="input-field" placeholder="Email" />
-            <i class="bx bx-envelope"></i>
-          </div>
-          <div class="input-box">
-            <input type="password" class="input-field" placeholder="Password" />
-            <i class="bx bx-lock-alt"></i>
-          </div>
-          <div class="input-box">
-            <input type="submit" class="submit" value="Register" />
-          </div>
-          <div class="two-col">
-            <div class="one">
-              <input type="checkbox" id="register-check" />
-              <label for="register-check"> Remember Me</label>
+            <div class="input-box">
+              <input type="submit" class="submit" value="Register" />
             </div>
-            <div class="two">
-              <label><a href="#">Terms & conditions</a></label>
+            <div class="two-col">
+              <div class="one">
+                <input type="checkbox" id="register-check" name="acceptTerms" />
+                <label for="register-check">
+                  I accept the Terms & Conditions</label
+                >
+              </div>
+              <div class="two">
+                <label><a href="#">Terms & conditions</a></label>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
     <script>
+      // Your existing scripts...
       function myMenuFunction() {
         var i = document.getElementById("navMenu");
         if (i.className === "nav-menu") {
@@ -129,8 +156,7 @@
           i.className = "nav-menu";
         }
       }
-    </script>
-    <script>
+
       var a = document.getElementById("loginBtn");
       var b = document.getElementById("registerBtn");
       var x = document.getElementById("login");
@@ -150,6 +176,78 @@
         b.className += " white-btn";
         x.style.opacity = 0;
         y.style.opacity = 1;
+      }
+
+      // New scripts for form validation...
+      function validateLogin() {
+        var usernameInput = document.querySelector('[name="username"]');
+        var passwordInput = document.querySelector('[name="password"]');
+
+        // Check if the username is not empty
+        if (usernameInput.value.trim() === "") {
+          alert("Please enter your username or email.");
+          return false;
+        }
+
+        // Check if the password is not empty
+        if (passwordInput.value.trim() === "") {
+          alert("Please enter your password.");
+          return false;
+        }
+
+        // You can add more validation checks here if needed
+
+        // If all validations pass, return true
+        return true;
+      }
+
+      function validateRegistration() {
+        var firstnameInput = document.querySelector('[name="firstname"]');
+        var lastnameInput = document.querySelector('[name="lastname"]');
+        var emailInput = document.querySelector('[name="email"]');
+        var passwordInput = document.querySelector('[name="registerPassword"]');
+        var acceptTermsCheckbox = document.querySelector(
+          '[name="acceptTerms"]'
+        );
+
+        // Check if the firstname is not empty
+        if (firstnameInput.value.trim() === "") {
+          alert("Please enter your firstname.");
+          return false;
+        }
+
+        // Check if the lastname is not empty
+        if (lastnameInput.value.trim() === "") {
+          alert("Please enter your lastname.");
+          return false;
+        }
+
+        // Check if the email is not empty and is in a valid format
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (
+          emailInput.value.trim() === "" ||
+          !emailPattern.test(emailInput.value)
+        ) {
+          alert("Please enter a valid email address.");
+          return false;
+        }
+
+        // Check if the password is at least 8 characters long
+        if (passwordInput.value.length < 8) {
+          alert("Password must be at least 8 characters long.");
+          return false;
+        }
+
+        // Check if the "Accept Terms" checkbox is checked
+        if (!acceptTermsCheckbox.checked) {
+          alert("Please accept the Terms & Conditions.");
+          return false;
+        }
+
+        // You can add more validation checks here if needed
+
+        // If all validations pass, return true
+        return true;
       }
     </script>
   </body>
