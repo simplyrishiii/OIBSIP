@@ -11,8 +11,7 @@ Project 2 - Tribute Page
 
 # tribute-page
 
-- [Page](http://jorge-sanz.github.io/tribute-page/) - Final result of the project
-- [Design](https://github.com/jorge-sanz/tribute-page/blob/gh-pages/art/tribute-page.png) - Website design made in Photoshop
+- [Page](http://simplyrishiii.github.io/tribute-page/) - Final result of the project
 
 ![Tribute Page](./art/tribute-page.gif)
 
